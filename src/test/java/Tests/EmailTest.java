@@ -1,16 +1,10 @@
 package Tests;
 
-import Common.Costants;
 import Pages.*;
 import Pages.ComposeEmailPage;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 
-import java.time.LocalDateTime;
-import java.util.List;
 
 public class EmailTest {
     @Test

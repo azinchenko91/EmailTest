@@ -1,18 +1,19 @@
 package Pages;
 
-import Common.Costants;
+import Driver.MyDriver;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 
- abstract class BasePage {
-    static WebDriver driver;
-    static {
-        System.setProperty("webdriver.gecko.driver", "Drivers\\geckodriver.exe");
-        driver = new FirefoxDriver();
-        driver.get(Costants.Base_URL);}
+public abstract class BasePage {
 
-     BasePage() {
+    protected static WebDriver driver = MyDriver.getDriver();
+    protected Logger log = LogManager.getLogger(this.getClass());
+
+    public BasePage() {
         PageFactory.initElements(driver, this);
     }
+
 }
+

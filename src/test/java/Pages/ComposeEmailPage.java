@@ -3,36 +3,26 @@ package Pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.time.LocalDateTime;
-
 public class ComposeEmailPage extends BasePage {
-    @FindBy(xpath = "//textarea[@name='to']")
-    private WebElement inputTo;
 
-    @FindBy(xpath = "//input[@name='subject']")
-    private WebElement inputSubject;
 
-    @FindBy(xpath = "//textarea[@id='text']")
-    private WebElement inputText;
+    @FindBy(xpath = "//textarea[@id='to']")
+    private WebElement toField;
 
-    @FindBy(xpath = "//input[@tabindex='12']")
-    private WebElement btnSend;
+    @FindBy(xpath = "//*[@name='subject']")
+    private WebElement subjectField;
 
-    public void composeEmail(String to, String subject, String text) {
-        inputTo.sendKeys(to);
-        String time = LocalDateTime.now().toString();
-        inputSubject.sendKeys(subject + " " + time);
-        inputText.sendKeys(text);
-//        btnSend.click();
+    @FindBy(xpath = "//*[@id='text']")
+    private WebElement textField;
+
+    @FindBy(xpath = "//*[@class='send_container clear']/input[1]")
+    private WebElement sendBtn;
+
+
+    public void creatEmail(String to, String subject, String text) {
+        toField.sendKeys(to);
+        subjectField.sendKeys(subject);
+        textField.sendKeys(text);
+        sendBtn.click();
     }
-
-    public void clickBtn (){
-        btnSend.click();
-    }
-
-    public String getInputSubject() {
-        return inputSubject.getAttribute("value");
-    }
-
-
 }

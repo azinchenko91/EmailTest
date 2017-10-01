@@ -1,31 +1,30 @@
 package Tests;
 
-import Pages.*;
-import Pages.ComposeEmailPage;
-import org.junit.Test;
+
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 
-public class EmailTest {
-    @Test
+public class EmailTest extends BaseTest {
+    @Test (priority = 1)
     public void testEmail() throws Exception {
-        LoginPage loginPage = new LoginPage();
-        loginPage.login("annazinchenko", "password1");
-        MailPage mailPage = new MailPage();
-        String userName = mailPage.gettextUserName();
-        Assert.assertEquals(userName, "Anna", "Current username "+userName+" isn't correct");
-        CreateEmailPage createEmailPage = new CreateEmailPage();
-        createEmailPage.createEmail();
-        ComposeEmailPage composeEmailPage = new ComposeEmailPage();
-        composeEmailPage.composeEmail("annazinchenko@i.ua", "Subject", "Text");
-        String composeEmailSubject2 = composeEmailPage.getInputSubject();
-        composeEmailPage.clickBtn();
-        SendEmailPage sendEmailPage = new SendEmailPage();
-        Assert.assertEquals(sendEmailPage.getConfirmationMessage(), "Письмо успешно отправлено адресатам", "Email isn't send");
-        sendEmailPage.clickSendLink();
-        String sendEmailSubject = sendEmailPage.getSubjectText();
-        Assert.assertEquals(sendEmailSubject, composeEmailSubject2, "Email isn't send");
+        app.login.loginValidUser();
+        String userName = app.mail.gettextUserName();
+        Assert.assertEquals(userName, "Anna", "Current username " + userName + " isn't correct");
+
+    }
+
+    @Test (priority = 2)
+    public void createEmail() throws Exception {
+//        app.login.loginValidUser();
+//        String userName = app.mail.gettextUserName();
+        app.mail.clickCreateEmailLink();
+        app.compose.createValidEmail();
+        app.sent.clickSentEmaillink();
+        String subjectText2 = app.sent.getSubjectText();
+        Assert.assertEquals(subjectText2, "Test Email", "Current " + subjectText2 + "isn't correct");
 
 
     }
+
 }

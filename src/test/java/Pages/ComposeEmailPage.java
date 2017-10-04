@@ -23,6 +23,13 @@ public class ComposeEmailPage extends BasePage {
         toField.sendKeys(to);
         subjectField.sendKeys(subject);
         textField.sendKeys(text);
+    }
+
+    public String getSubjectText (){
+        return subjectField.getAttribute("value");
+    }
+
+    public void clickSendButton(){
         sendBtn.click();
     }
 }

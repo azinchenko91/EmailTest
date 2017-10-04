@@ -1,25 +1,32 @@
 package Pages;
 
+import Utils.Email;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class MailPage extends BasePage{
+import java.util.ArrayList;
+import java.util.List;
 
-	@FindBy(xpath="//li[@class = \"ho_menu_item\"]/a/span")
+public class MailPage extends BasePage {
+
+	@FindBy(xpath = "//li[@class = \"ho_menu_item\"]/a/span")
 	private WebElement textUserName;
 
-	@FindBy(xpath="//*[@class='make_message']/a")
+	@FindBy(xpath = "//*[@class='make_message']/a")
 	private WebElement createEmailLink;
 
 
 	public String gettextUserName() {
-	    return textUserName.getText();
-    }
+		return textUserName.getText();
+	}
 
-    public void clickCreateEmailLink(){
+	public void clickCreateEmailLink() {
 		createEmailLink.click();
+
 	}
 
 }
+
+

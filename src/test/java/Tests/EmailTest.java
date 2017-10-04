@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 
 public class EmailTest extends BaseTest {
-    @Test (priority = 1)
+    @Test(priority = 1)
     public void testEmail() throws Exception {
         app.login.loginValidUser();
         String userName = app.mail.gettextUserName();
@@ -14,16 +14,15 @@ public class EmailTest extends BaseTest {
 
     }
 
-    @Test (priority = 2)
+    @Test(priority = 2)
     public void createEmail() throws Exception {
-//        app.login.loginValidUser();
-//        String userName = app.mail.gettextUserName();
         app.mail.clickCreateEmailLink();
         app.compose.createValidEmail();
+        String subjectText = app.compose.getSubjectText();
+        app.compose.clickSendButton();
         app.sent.clickSentEmaillink();
-        String subjectText2 = app.sent.getSubjectText();
-        Assert.assertEquals(subjectText2, "Test Email", "Current " + subjectText2 + "isn't correct");
-
+        String firstSubjecttext = app.sent.getFirstSubjectText2();
+        Assert.assertEquals(firstSubjecttext, subjectText, "Current " + firstSubjecttext + "isn't valid");
 
     }
 
